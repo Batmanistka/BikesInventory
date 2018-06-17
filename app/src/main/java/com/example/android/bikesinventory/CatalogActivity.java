@@ -68,7 +68,7 @@ public class CatalogActivity extends AppCompatActivity {
                 null,
                 null);
 
-        TextView displayView = (TextView) findViewById(R.id.text_view_pet);
+        TextView displayView = (TextView) findViewById(R.id.text_view_bike);
 
         try {
             displayView.setText("The bikes table contains " + cursor.getCount() + " bikes.\n\n");
