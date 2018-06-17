@@ -26,7 +26,7 @@ public class CatalogActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catalog);
 
-        // Setup FAB to open EditorActivity
+        // open EditorActivity
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,8 +88,6 @@ public class CatalogActivity extends AppCompatActivity {
             int priceColumnIndex = cursor.getColumnIndex(BikeEntry.COLUMN_PRICE);
 
             while (cursor.moveToNext()) {
-                // Use that index to extract the String or Int value of the word
-                // at the current row the cursor is on.
                 int currentID = cursor.getInt(idColumnIndex);
                 String currentName = cursor.getString(productNameColumnIndex);
                 String currentSupplierName = cursor.getString(suppplierNameColumnIndex);
@@ -121,32 +119,4 @@ public class CatalogActivity extends AppCompatActivity {
         long newRowid = db.insert(BikeEntry.TABLE_NAME, null, values);
         Log.v("CatalogActivity", "New row ID" + newRowid);
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu options from the res/menu/menu_catalog.xml file.
-        // This adds menu items to the app bar.
-        getMenuInflater().inflate(R.menu.menu_catalog, menu);
-        return true;
     }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // User clicked on a menu option in the app bar overflow menu
-        switch (item.getItemId()) {
-            // Respond to a click on the "Insert data" menu option
-            case R.id.action_save:
-                insertBike();
-                displayDatabaseInfo();
-                return true;
-            // Respond to a click on the "Delete all bikes" menu option
-            case R.id.action_delete_all_entries:
-                // Do nothing for now
-                return true;
-            case android.R.id.home:
-                NavUtils.navigateUpFromSameTask(this);
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-}
